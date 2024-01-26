@@ -21,10 +21,9 @@ func main() {
 	id, queryRes := store.CheckDB(1)
 	fmt.Printf("Value of the column with the value %d : %s\n", id, queryRes)
 	// TODO: On teste d'abord le serveur et ensuite on gere la connection avec la base de donnee
-	if err := http.ListenAndServe(port_formatted, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	http.ListenAndServe(port_formatted, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Je tape dans le serveur")
 		fmt.Fprintln(w, "Le serveur renvoit la reponse suivante")
-	})); err != nil {
-		log.Fatal("Cannot connect to the server - %s", err)
-	}
+	}))
+	fmt.Println("Something happened, the server can not run")
 }
