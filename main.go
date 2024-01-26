@@ -22,8 +22,8 @@ func main() {
 	fmt.Printf("Value of the column with the value %d : %s\n", id, queryRes)
 	// TODO: On teste d'abord le serveur et ensuite on gere la connection avec la base de donnee
 	http.ListenAndServe(port_formatted, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("Je tape dans le serveur")
-		fmt.Fprintln(w, "Le serveur renvoit la reponse suivante")
+		fmt.Println("Le serveur vient de recevoir une requete")
+		fmt.Fprintln(w, "Le serveur renvoie la reponse suivante")
 	}))
 	fmt.Println("Something happened, the server can not run")
 }
