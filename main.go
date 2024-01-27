@@ -20,7 +20,6 @@ func main() {
 	store.FillDB()
 	id, queryRes := store.CheckDB(1)
 	fmt.Printf("Value of the column with the value %d : %s\n", id, queryRes)
-	// http.ListenAndServe(port_formatted, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	err = http.ListenAndServe("0.0.0.0:1234", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Le serveur vient de recevoir une requete")
 		fmt.Fprintln(w, "Le serveur renvoie la reponse suivante")
@@ -30,4 +29,5 @@ func main() {
 	if err != nil {
 		log.Fatal("Cannot open the server - ", err)
 	}
+	fmt.Println("Last line of the file, does the program goes through this ?")
 }
