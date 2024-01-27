@@ -28,6 +28,7 @@ func (s *Store) Ping() {
 }
 
 func (s *Store) Init() {
+	// TODO: Il faut changer le id d'un integer a un uuid
 	query := "CREATE TABLE IF NOT EXISTS users (id INTEGER NOT NULL PRIMARY KEY, name TEXT NOT NULL);"
 	_, err := s.db.Exec(query)
 	if err != nil {
@@ -48,6 +49,19 @@ func (s *Store) FillDB() {
 			log.Fatal("Fail executing the query - ", err)
 		}
 	}
+}
+
+func (s *Store) AppendDB() (count int) {
+	insertQuery := "INSERT INTO users (name) VALUES ('some name');"
+	checkQuery := "SELECT COUNT(id) FROM users;"
+	_, err := s.db.Exec(insertQuery)
+	if err != nil {
+		log.Fatal("Fail executing the query - ", err)
+	}
+	if err := s.db.QueryRow(checkQuery).Scan(&count); err != nil {
+		log.Fatal("Cannot get the number of rows from the users table - ", err)
+	}
+	return count
 }
 
 func (s *Store) CheckDB(value int) (id int, res string) {
