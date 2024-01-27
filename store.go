@@ -65,7 +65,7 @@ func (s *Store) AppendDB() (count int) {
 }
 
 func (s *Store) CheckDB(value int) (id int, res string) {
-	newquery := fmt.Sprintf("select * from users where id = %d", value)
+	newquery := fmt.Sprintf("SELECT * FROM users WHERE id = %d", value)
 	if err := s.db.QueryRow(newquery).Scan(&id, &res); err != nil {
 		if err == sql.ErrNoRows {
 			log.Fatalf("No row found for ID %d", value)
